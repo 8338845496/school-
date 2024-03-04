@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Fee Receipt</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #totalAmount {
+            font-weight: bold;
+        }
+        #totalDue {
+            font-weight: bold;
+        }
+        .underline-input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            outline: none;
+            background-color: transparent;
+        }
+        .flex-grow-1 {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="" alt="logo" class=""> 
+        <h1 class="text-center">UVANN MODEL SCHOOL</h1>
+        <p class="text-center MT-2">(Recognized by the Govt.of T.C)</p>
+        <h5 class="text-center MT-2">Nursery to X Class | English Medium</h5>
+        <h5>Above Bank Of Baroda, Bhagyalatha,Bus Stop, Hayathnagar,R.R Dist, Hyderabad </h5>
+        <h2 class="text-center">FEE RECEIPT</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="receiptNo">No.</label>
+                    <input type="text" class="form-control" id="receiptNo" style="width: 40%;">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="receiptDate">Date:</label>
+                    <input type="date" class="form-control" id="receiptDate" style="width: 40%;">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="class">Class</label>
+                            <input type="text" class="form-control" id="class" placeholder="Enter class">
+                        </div>
+                    </div>
+                    <div class="col"> 
+                        <div class="form-group">
+                            <label for="term">Term/Month</label>
+                            <input type="text" class="form-control" id="term" placeholder="Enter term/month">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>List</th>
+                        <th>Particular</th>
+                        <th>Due</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Tuition Fee</td>
+                        <td><input type="number" class="form-control due" value="0"></td>
+                        <td><input type="number" class="form-control amount" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Exam Fee</td>
+                        <td><input type="number" class="form-control due" value="0"></td>
+                        <td><input type="number" class="form-control amount" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Special Fee</td>
+                        <td><input type="number" class="form-control due" value="0"></td>
+                        <td><input type="number" class="form-control amount" value="0"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" class="text-center">Total</td>
+                        <td id="totalDue" class="text-center">0</td>
+                        <td id="totalAmount" class="text-center">0</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <div class="container mb-4">
+            <h3 class="text-center mt-4">Payment Options</h3>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-block" onclick="redirectToPayment('phonepe')">Pay with PhonePe</button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-success btn-block" onclick="redirectToPayment('googlepay')">Pay with Google Pay</button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-warning btn-block" onclick="redirectToPayment('paytm')">Pay with Paytm</button>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <button class="btn btn-info btn-block" onclick="redirectToPayment('netbanking')">Pay with Net Banking</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-secondary btn-block" onclick="redirectToPayment('realworld')">Pay at School (Real World)</button>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <input type="text" id="paymentInput" class="form-control" placeholder="Enter UPI ID or Phone Number">
+                <button class="btn btn-primary mt-2" onclick="redirectToPayment('custom')">Pay with Entered Details</button>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function redirectToPayment(method) {
+            let paymentDetails = '';
+            if (method === 'phonepe') {
+                // Redirect to PhonePe payment page
+                window.location.href = 'https://phonepe.com/';
+            } else if (method === 'googlepay') {
+                // Redirect to Google Pay payment page
+                window.location.href = 'https://pay.google.com/';
+            } else if (method === 'paytm') {
+                // Redirect to Paytm payment page
+                window.location.href = 'https://paytm.com/';
+            } else if (method === 'netbanking') {
+                // Redirect to Net Banking payment page
+                window.location.href = 'https://netbanking.bank/';
+            } else if (method === 'realworld') {
+                // Show real-world payment instructions
+                alert('Please visit the school office to make the payment.');
+            } else if (method === 'custom') {
+                // Get entered details and handle payment
+                const inputField = document.getElementById('paymentInput');
+                const enteredDetails = inputField.value.trim();
+                if (enteredDetails) {
+                    // Handle payment with entered details
+                    alert('You entered: ' + enteredDetails);
+                    // You can implement your logic to handle the payment with entered details
+                } else {
+                    alert('Please enter valid details to proceed with payment.');
+                }
+            }
+        }
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const amounts = document.querySelectorAll('.amount');
+        const dues = document.querySelectorAll('.due');
+        const totalAmountField = document.getElementById('totalAmount');
+        const totalDueField = document.getElementById('totalDue');
+        
+        amounts.forEach(amount => {
+            amount.addEventListener('input', updateTotal);
+        });
+
+        dues.forEach(due => {
+            due.addEventListener('input', updateTotal);
+        });
+
+        function updateTotal() {
+            let totalAmount = 0;
+            let totalDue = 0;
+
+            amounts.forEach(amount => {
+                totalAmount += parseFloat(amount.value);
+            });
+
+            dues.forEach(due => {
+                totalDue += parseFloat(due.value);
+            });
+
+            totalAmountField.textContent = totalAmount.toFixed(2);
+            totalDueField.textContent = totalDue.toFixed(2);
+        }
+    </script>
+</body>
+</html>
